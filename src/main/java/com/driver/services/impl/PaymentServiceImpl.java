@@ -3,8 +3,10 @@ package com.driver.services.impl;
 import com.driver.model.Payment;
 import com.driver.model.PaymentMode;
 import com.driver.model.Reservation;
+import com.driver.model.Spot;
 import com.driver.repository.PaymentRepository;
 import com.driver.repository.ReservationRepository;
+import com.driver.repository.SpotRepository;
 import com.driver.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,9 @@ public class PaymentServiceImpl implements PaymentService {
     ReservationRepository reservationRepository2;
     @Autowired
     PaymentRepository paymentRepository2;
+
+    @Autowired
+    SpotRepository spotRepository;
 
     @Override
     public Payment pay(Integer reservationId, int amountSent, String mode) throws Exception {
@@ -50,12 +55,14 @@ public class PaymentServiceImpl implements PaymentService {
             payment.setReservation(reservation);
 
             Payment savedPayment = paymentRepository2.save(payment);
-            reservation.getSpot().setOccupied(false);
+            Spot spot = reservation.getSpot();
+            spot.setOccupied(false);
+            spotRepository.save(spot);
             reservation.setPayment(savedPayment);
             reservationRepository2.save(reservation);
 
             return  savedPayment;
         }
-        return null;
+        return new Payment();
     }
 }
