@@ -8,13 +8,14 @@ import java.util.List;
 public class Spot {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     @Enumerated(EnumType.STRING)
     SpotType spotType;
 
     public Spot() {
+        this.reservationList = new ArrayList<>();
     }
 
     public Spot(int id, SpotType spotType, int pricePerHour, boolean occupied) {
@@ -22,6 +23,16 @@ public class Spot {
         this.spotType = spotType;
         this.pricePerHour = pricePerHour;
         this.occupied = occupied;
+        this.reservationList = new ArrayList<>();
+    }
+
+    public Spot(int id, SpotType spotType, int pricePerHour, boolean occupied, ParkingLot parkingLot, List<Reservation> reservationList) {
+        this.id = id;
+        this.spotType = spotType;
+        this.pricePerHour = pricePerHour;
+        this.occupied = occupied;
+        this.parkingLot = parkingLot;
+        this.reservationList = reservationList;
     }
 
     public int getId() {

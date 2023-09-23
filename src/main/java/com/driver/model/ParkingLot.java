@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class ParkingLot {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String name;
@@ -15,12 +15,21 @@ public class ParkingLot {
     String address;
 
     public ParkingLot() {
+        this.spotList = new ArrayList<>();
     }
 
     public ParkingLot(int id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.spotList = new ArrayList<>();
+    }
+
+    public ParkingLot(int id, String name, String address, List<Spot> spotList) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.spotList = spotList;
     }
 
     public int getId() {

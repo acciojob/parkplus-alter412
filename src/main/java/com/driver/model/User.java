@@ -8,7 +8,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String name;
@@ -21,6 +21,7 @@ public class User {
     List<Reservation> reservationList = new ArrayList<>();
 
     public User() {
+        this.reservationList = new ArrayList<>();
     }
 
     public User(int id, String name, String phoneNumber, String password) {
@@ -28,6 +29,15 @@ public class User {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.reservationList = new ArrayList<>();
+    }
+
+    public User(int id, String name, String phoneNumber, String password, List<Reservation> reservationList) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.reservationList = reservationList;
     }
 
     public int getId() {
