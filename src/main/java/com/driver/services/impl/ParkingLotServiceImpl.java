@@ -50,7 +50,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
          parkingLotRepository1.save(parkingLot);
          return  savedSpot;
         }
-        return null;
+        return new Spot();
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             Spot savedSpot = spotRepository1.save(spot);
            return  savedSpot;
         }
-        return null;
+        return new Spot();
     }
 
     @Override
