@@ -21,7 +21,7 @@ public class PaymentServiceImpl implements PaymentService {
     PaymentRepository paymentRepository2;
 
     @Autowired
-    SpotRepository spotRepository;
+    SpotRepository spotRepository1;
 
     @Override
     public Payment pay(Integer reservationId, int amountSent, String mode) throws Exception {
@@ -57,7 +57,7 @@ public class PaymentServiceImpl implements PaymentService {
             Payment savedPayment = paymentRepository2.save(payment);
             Spot spot = reservation.getSpot();
             spot.setOccupied(false);
-            spotRepository.save(spot);
+            spotRepository1.save(spot);
             reservation.setPayment(savedPayment);
             reservationRepository2.save(reservation);
 
