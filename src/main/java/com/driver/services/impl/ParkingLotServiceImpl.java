@@ -25,8 +25,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         parkingLot.setName(name);
         parkingLot.setAddress(address);
 
-        ParkingLot savedParkingLot = parkingLotRepository1.save(parkingLot);
-        return savedParkingLot;
+        return parkingLotRepository1.save(parkingLot);
     }
 
     @Override
