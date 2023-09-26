@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
         if(optionalUser.isPresent()){
             User temp = optionalUser.get();
             temp.setPassword(password);
-            User updatedUser = userRepository4.save(temp);
+            userRepository4.save(temp);
             return temp;
         }
         return null;
