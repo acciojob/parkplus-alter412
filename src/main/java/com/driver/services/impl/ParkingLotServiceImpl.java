@@ -70,18 +70,6 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             }
         }
         return spot;
-
-//        Optional<Spot> optionalSpot = spotRepository1.findById(spotId);
-//        if(optionalSpot.isPresent()){
-//            Spot spot = optionalSpot.get();
-//            spot.setPricePerHour(pricePerHour);
-//            Spot savedSpot = spotRepository1.save(spot);
-//           return  spot;
-//        }
-//        Spot spot = new Spot();
-//        spot.setPricePerHour(5);
-//        spot.setSpotType(SpotType.TWO_WHEELER);
-//        return spot;
     }
 
     @Override
