@@ -65,7 +65,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
                     parkingLotRepository1.save(parkingLot);
                 }
             }
-            spotRepository1.delete(spot);
+            spotRepository1.deleteById(spotId);
         }
     }
 
