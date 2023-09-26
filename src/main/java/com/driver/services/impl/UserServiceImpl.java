@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
             User temp = optionalUser.get();
             temp.setPassword(password);
             User updatedUser = userRepository4.save(temp);
-            return updatedUser;
+            return temp;
         }
         return null;
     }
