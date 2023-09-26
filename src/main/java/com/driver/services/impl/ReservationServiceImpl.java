@@ -24,21 +24,14 @@ public class ReservationServiceImpl implements ReservationService {
     ParkingLotRepository parkingLotRepository3;
     @Override
     public Reservation reserveSpot(Integer userId, Integer parkingLotId, Integer timeInHours, Integer numberOfWheels) throws Exception {
-        Optional<User> optionalUser = userRepository3.findById(userId);
-       // throw new Exception("Cannot make reservation");
-        if(!optionalUser.isPresent()){
-            //return new Reservation();
+        User user = userRepository3.findById(userId).orElse(null);
+        if(user == null){
             throw new Exception("Cannot make reservation");
         }
-        Optional<ParkingLot> optionalParkingLot = parkingLotRepository3.findById(parkingLotId);
-        if(!optionalParkingLot.isPresent()){
-            //return new Reservation();
+        ParkingLot parkingLot = parkingLotRepository3.findById(parkingLotId).orElse(null);
+        if(parkingLot == null){
             throw new Exception("Cannot make reservation");
         }
-
-
-        ParkingLot parkingLot = optionalParkingLot.get();
-        User user = optionalUser.get();
 
         Spot spot = null;
 
@@ -59,7 +52,6 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
         if(spot == null){
-            //return new Reservation();
             throw new Exception("Cannot make reservation");
         }
 
@@ -69,8 +61,10 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setNumberOfHours(timeInHours);
 
         Reservation savedReservation = reservationRepository3.save(reservation);
+
         user.getReservationList().add(savedReservation);
         userRepository3.save(user);
+
         spot.setOccupied(true);
         spot.getReservationList().add(savedReservation);
         spotRepository3.save(spot);
